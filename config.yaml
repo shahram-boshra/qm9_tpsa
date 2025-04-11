@@ -1,10 +1,10 @@
 data:
   root_dir: C:/Chem_Data/qm9  # Adjusted for QM9 dataset
-  target_indices: [0, 3, 5]  
+  target_indices: [0, 3, 5]
   use_cache: true
   train_split: 0.8
   valid_split: 0.1
-  subset_size: 500 #  Specify the subset size
+  subset_size: 10000 #  Specify the subset size
 
 model:
   batch_size: 256
@@ -17,7 +17,9 @@ model:
   early_stopping_patience: 20
   early_stopping_delta: 0.001
   l1_regularization_lambda: 0.006
-  first_layer_type: "transformer_conv" # Adjusted for consistency
   hidden_channels: 512
-  second_layer_type: "transformer_conv" # Adjusted for consistency
   dropout_rate: 0.176
+  num_layers: 3 # Specify the number of layers
+  layer_types: ["transformer_conv", "transformer_conv", "gcn"] # Define the sequence of layer types
+  gat_heads: 1 # If any layer_type is "gat"
+  transformer_heads: 1 # If any layer_type is "transformer_conv"

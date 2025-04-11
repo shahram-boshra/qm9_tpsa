@@ -74,6 +74,10 @@ class ModelConfig(BaseModel):
     hidden_channels: int = Field(256, description="Number of hidden channels in the model.")
     second_layer_type: Optional[str] = Field("custom_mp", description="Type of the second layer.")
     dropout_rate: float = Field(0.5, description="Dropout rate in the model.")
+    num_layers: int = Field(3, description="Number of graph convolutional layers.")
+    layer_types: List[str] = Field(["gcn"], description="List of graph convolutional layer types to use.")
+    gat_heads: int = Field(1, description="Number of attention heads for GATConv.")
+    transformer_heads: int = Field(1, description="Number of attention heads for TransformerConv.")
 
 class Config(BaseModel):
     """
